@@ -8,7 +8,8 @@ class Server {
     constructor() {
         this.app  = express();
         this.port = process.env.PORT;
-        this.paisPath = '/api/pais';
+        this.crPath = '/api/costarica';
+        this.gtPath = '/api/guatemala';
 
         // Conectar a base de datos
         this.conectarDB();
@@ -39,7 +40,9 @@ class Server {
     }
 
     routes() {
-        this.app.use( this.paisPath, require('../routes/pais'));
+        this.app.use( this.crPath, require('../routes/costarica'));
+        this.app.use( this.gtPath, require('../routes/guatemala'));
+
     }
 
     listen() {

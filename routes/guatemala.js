@@ -4,39 +4,39 @@ const { check } = require('express-validator');
 
 
 const { validarCampos } = require('../middlewares/validar-campos');
-const { codigoExiste, existePaisPorId } = require('../helpers/db-validators'); 
+const { codigoExisteGt, existePaisPorIdGt } = require('../helpers/db-validators'); 
 
-const { paisGet,
-        paisPut,
-        paisPost,
-        paisDelete,
-        paisPatch } = require('../controllers/pais');
+const { gtGet,
+        gtPut,
+        gtPost,
+        gtDelete,
+        gtPatch } = require('../controllers/guatemala');
 
 const router = Router();
 
 
-router.get('/', paisGet );
+router.get('/', gtGet );
 
 router.post('/',[
-    check('codigo').custom(codigoExiste),
+    check('codigo').custom(codigoExisteGt),
     check('codigo', 'El código es obligatorio').not().isEmpty(),
     validarCampos
-], paisPost );
+], gtPost );
 
 router.put('/:id',[
     check('id', 'No es un ID válido').isMongoId(),
-    check('id').custom( existePaisPorId ),
-    check('codigo').custom(codigoExiste),
+    check('id').custom( existePaisPorIdGt ),
+    check('codigo').custom(codigoExisteGt),
     validarCampos
-],paisPut );
+],gtPut );
 
 router.delete('/:id',[
     check('id', 'No es un ID válido').isMongoId(),
-    check('id').custom( existePaisPorId ),
+    check('id').custom( existePaisPorIdGt),
     validarCampos
-],paisDelete );
+],gtDelete );
 
-router.patch('/', paisPatch );
+router.patch('/', gtPatch );
 
 
 

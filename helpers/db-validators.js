@@ -1,18 +1,35 @@
 //const Role = require('../models/role');
-const Pais = require('../models/pais');
+const costarica = require('../models/costarica');
+const guatemala = require('../models/guatemala');
 
 
-const codigoExiste = async( codigo = '' ) => {
+const codigoExisteGt = async( codigo = '' ) => {
     // Verificar si el correo existe
-    const existeCodigo = await Pais.findOne({ codigo });
+    const existeCodigo = await guatemala.findOne({ codigo });
     if ( existeCodigo ) {
         throw new Error(`El codigo: ${ codigo }, ya está registrado`);
     }
 }
 
-const existePaisPorId = async( id ) => {
+const codigoExisteCr = async( codigo = '' ) => {
     // Verificar si el correo existe
-    const existePais = await Pais.findById(id);
+    const existeCodigo = await costarica.findOne({ codigo });
+    if ( existeCodigo ) {
+        throw new Error(`El codigo: ${ codigo }, ya está registrado`);
+    }
+}
+
+const existePaisPorIdGt = async( id ) => {
+    // Verificar si el correo existe
+    const existePais = await guatemala.findById(id);
+    if ( !existePais ) {
+        throw new Error(`El id no existe ${ id }`);
+    }
+}
+
+const existePaisPorIdCr = async( id ) => {
+    // Verificar si el correo existe
+    const existePais = await costarica.findById(id);
     if ( !existePais ) {
         throw new Error(`El id no existe ${ id }`);
     }
@@ -21,7 +38,9 @@ const existePaisPorId = async( id ) => {
 
 
 module.exports = {
-    codigoExiste,
-    existePaisPorId
+    codigoExisteGt,
+    codigoExisteCr,
+    existePaisPorIdGt,
+    existePaisPorIdCr
 }
 
