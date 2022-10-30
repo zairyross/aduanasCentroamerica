@@ -20,6 +20,9 @@ router.get('/', crGet );
 router.post('/',[
     check('codigo').custom(codigoExisteCr),
     check('codigo', 'El código es obligatorio').not().isEmpty(),
+    check('nombreproyecto', 'El nombre del proyecto es obligatorio').not().isEmpty(),
+    check('fechacierre', 'La fecha de cierre es obligatorio').not().isEmpty(),
+    check('paisejecuta', 'El país que ejecuta es obligatorio').not().isEmpty(),
     validarCampos
 ], crPost );
 

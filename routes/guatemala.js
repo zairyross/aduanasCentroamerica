@@ -20,6 +20,9 @@ router.get('/', gtGet );
 router.post('/',[
     check('codigo').custom(codigoExisteGt),
     check('codigo', 'El código es obligatorio').not().isEmpty(),
+    check('nombreproyecto', 'El nombre del proyecto es obligatorio').not().isEmpty(),
+    check('monto', 'El monto obligatorio').not().isEmpty(),
+    check('fecha', 'La fecha es obligatoria').not().isEmpty(),
     validarCampos
 ], gtPost );
 
